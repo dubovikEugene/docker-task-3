@@ -1,0 +1,34 @@
+version: '3'
+services:
+  hello-world:
+    image: hello-world
+    container_name: hello-world
+
+  postgres:
+    image: postgres:16
+    logging:
+      options:
+        max-size: "10m"
+    container_name: postgres
+    environment:
+      POSTGRES_DB: test
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /data/postgres
+    volumes:
+      - ./postgres:/data/postgres
+    ports:
+      - "5432:5432"
+
+  simple-app:
+    depends_on:
+      - postgres
+    container_name: simple-app
+    build:
+      context: ./
+      dockerfile: dockerfile
+    image: simple-app:latest
+    ports:
+      - "8080:8080"
+    environment:
+      DEVOPS: Username
