@@ -1,9 +1,11 @@
 package com.dubovik.simple_app;
 
-import java.util.HashSet;
+import java.util.Set;
 
 public interface BookService {
-    HashSet<Book> findAllBook();
-    Book findBookByID(long id);
-    String getEnvVariable();
+  Set<Book> findAllBook();
+
+  Book findBookByID(long id);
+
+  String getEnvVariable();
 }
