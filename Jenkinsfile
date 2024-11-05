@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        CI = 'true'
+    }
+
     tools {
         maven "3.9.9"
     }
